@@ -11,6 +11,7 @@ RSpec.describe Interactor::Contracts::BreachSet do
         breach.call(:first_name, ["first"]),
         breach.call(:first_name, %w(second third)),
         breach.call(:last_name, ["last_name is missing"]),
+        breach.call(:address, "line_1" => "line 1 is missing"),
       ]
 
       set = Interactor::Contracts::BreachSet.new(breaches)
@@ -19,6 +20,7 @@ RSpec.describe Interactor::Contracts::BreachSet do
 
       expect(result[:first_name]).to eq(%w(first second third))
       expect(result[:last_name]).to eq(["last_name is missing"])
+      expect(result[:address]).to eq("line_1" => "line 1 is missing")
     end
   end
 end

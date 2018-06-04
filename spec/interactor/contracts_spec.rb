@@ -24,7 +24,7 @@ RSpec.describe Interactor::Contracts do
 
     result = interactor.call({})
     expect(result).to be_a_failure
-    expect(result.name).to eq(["name is missing"])
+    expect(result.errors[:name]).to eq(["name is missing"])
   end
 
   describe ".assures" do

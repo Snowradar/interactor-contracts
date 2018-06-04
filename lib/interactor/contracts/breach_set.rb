@@ -40,7 +40,7 @@ module Interactor
             if messages.is_a?(Hash)
               messages
             else
-             Array(result[:errors][property]) | messages
+              Array(result[:errors][property]) | messages
             end
 
           result

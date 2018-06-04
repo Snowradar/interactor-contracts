@@ -27,8 +27,8 @@ module Interactor
       #   end
       #
       #   result = AuthenticateUser.call({})
-      #   #=> #<Interactor::Context email=["email is missing"],
-      #                             password=["password is missing"]>
+      #   #=> #<Interactor::Context errors={:email=>["email is missing"],
+      #                                     :password=>["password is missing"]}>
       #
       #   result.failure?  #=> true
       #
@@ -36,11 +36,12 @@ module Interactor
       # @return [Hash] a hash with property keys and message values
       def to_hash
         reduce({}) do |result, (property, messages)|
-          result[property] = if messages.is_a?(Hash)
-                               messages
-                             else
-                               Array(result[property]) | messages
-                             end
+          (result[:errors] ||= {})[property] =
+            if messages.is_a?(Hash)
+              messages
+            else
+             Array(result[:errors][property]) | messages
+            end
 
           result
         end

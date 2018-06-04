@@ -25,7 +25,7 @@ RSpec.describe Interactor::Contracts::Outcome do
       end
 
       it "converts to a hash based on its breaches" do
-        expect(subject.to_h).to eq(:name => ["name is missing"])
+        expect(subject.to_h).to eq(:errors => {:name => ["name is missing"]})
       end
     end
   end

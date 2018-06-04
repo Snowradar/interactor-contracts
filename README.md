@@ -95,7 +95,7 @@ For example, the above interactor acts as follows:
 
 ```ruby
 result = AuthenticateUser.call({})
-#=> #<Interactor::Context email=["email is missing"], password=["password is missing"]>
+#=> #<Interactor::Context errors={:email=>["email is missing"], :password=>["password is missing"]}>
 
 result.failure?  #=> true
 ```

@@ -109,7 +109,7 @@ module Interactor
       # @api private
       # @return [#call] the default consequence
       def default_consequence
-        ->(breaches) { context.fail!(breaches) }
+        ->(breaches) { context.fail!(breaches.to_h) }
       end
     end
   end
